@@ -5,6 +5,7 @@ import {
   HttpException,
 } from '@nestjs/common';
 import { Request, Response } from 'express';
+import { getUTCEightTimeStamp } from '@utils/index';
 
 @Catch(HttpException)
 export class CustomExceptionFilter implements ExceptionFilter {
@@ -22,7 +23,7 @@ export class CustomExceptionFilter implements ExceptionFilter {
     const errorResponse = {
       code: status,
       msg: msg,
-      timestamp: new Date().toISOString(),
+      timestamp: getUTCEightTimeStamp(),
       path: request.url,
     };
 
